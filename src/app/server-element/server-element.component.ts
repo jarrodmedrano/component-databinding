@@ -1,7 +1,9 @@
 import {
   Component,
   OnInit,
-  Input }
+  Input,
+  DoCheck
+}
   from '@angular/core';
 
 @Component({
@@ -9,7 +11,14 @@ import {
   templateUrl: './server-element.component.html',
   styleUrls: ['./server-element.component.css']
 })
-export class ServerElementComponent implements OnInit, OnChanges {
+export class ServerElementComponent implements
+  OnInit,
+  OnChanges,
+  DoCheck,
+  AfterViewInit,
+  AfterViewChecked,
+  AfterContentInit,
+  AfterContentChecked, OnDestroy {
  @Input('srvElement') element: {type: string, name: string, content: string};
  @Input() name: string;
 
@@ -24,6 +33,34 @@ export class ServerElementComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     console.log('ngOninit called');
+  }
+
+  ngDoCheck() {
+    console.log('ngDoCheck called!');
+  }
+
+  ngAfterContentInit() {
+    console.log('ngAfterContentInit called!');
+    //only called once
+  }
+
+  ngAfterContentChecked() {
+    console.log('ngAfterContentChecked called!');
+    //after each change detection cycle
+  }
+
+  ngAfterViewInit() {
+    console.log('ngAfterViewInit called!');
+    //only called once
+  }
+
+  ngAfterViewChecked() {
+    console.log('ngAfterViewChecked called!');
+    //after each change detection cycle
+  }
+
+  ngOnDestroy() {
+    console.log('ngOnDestroy called');
   }
 
 }
